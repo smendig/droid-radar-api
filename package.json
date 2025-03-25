@@ -6,7 +6,10 @@
     "build": "tsc --project tsconfig.build.json",
     "start": "node dist/index.js",
     "test": "jest --coverage",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "list-logs": "DOTENV_CONFIG_PATH=.env.dev tsx -r dotenv/config src/scripts/list_logs.ts",
+    "get-logs": "DOTENV_CONFIG_PATH=.env.dev tsx -r dotenv/config src/scripts/get_logs.ts",
+    "delete-logs": "DOTENV_CONFIG_PATH=.env.dev tsx -r dotenv/config src/scripts/delete_logs.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
