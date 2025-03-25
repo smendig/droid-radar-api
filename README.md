@@ -1,4 +1,4 @@
-# Droid Combat Radar API :robot:
+# Droid Combat Radar API
 
 A REST API for the New Republic's YVH combat droid targeting system, processing enemy targets using dynamic protocols and maintaining audit logs. Built with Express, TypeScript, and MongoDB.
 
