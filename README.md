@@ -2,13 +2,16 @@
 
 A REST API for the New Republic's YVH combat droid targeting system, processing enemy targets using dynamic protocols and maintaining audit logs. Built with Express, TypeScript, and MongoDB.
 
-## Features
+## Development Approach:
 
-- **Target Calculation**: `POST /radar` endpoint for protocol-based target selection
-- **Audit System**: Track all calculations with `GET /audit` and `DELETE /audit/:id` endpoints
-- **Protocol Engine**: Extensible system for combat protocols (closest-enemies, avoid-mech, etc.)
-- **Persistent Storage**: MongoDB integration for audit logs
-- **Validation**: Zod schema validation for all requests
+This project was approached with a focus on extensibility, maintainability, and testability, while avoiding over-engineering for the given scope.
+- The application is structured using a layered architecture to separate concerns (API, application logic, data access, etc.), promoting modularity and maintainability.
+- Zod schemas are used for comprehensive input validation at the API layer.
+- A combination of **unit tests** (for individual protocol logic) and **integration tests** (for API endpoints and database interactions) are included.  The tests cover the acceptance criteria outlined in the original task description, ensuring the core targeting logic and audit system function correctly. An in-memory MongoDB server is used for integration tests to provide isolation and speed up test execution.
+- The application is Dockerized for easy deployment and consistent environments.
+
+## Acceptance criteria
+![Image](images/tests-acceptance.png)
 
 ## Quick Start
 
