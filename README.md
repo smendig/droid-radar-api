@@ -15,21 +15,46 @@ This project was approached with a focus on extensibility, maintainability, and 
 
 ## Quick Start
 
+### Recommended: Using Docker (Easiest Method)
+
+The fastest way to get started is using Docker, which handles all dependencies including MongoDB:
+
+```bash
+docker compose up --build
+```
+
+The API will be available at `http://localhost:3000` with a configured MongoDB instance.
+
+**Note:** Environment variables are preconfigured for Docker in `docker-compose.yml` (adjust accordingly).
+
+## Running Locally
+
 ### Prerequisites
 
 - Node.js v20+
 - MongoDB 6+
 - Docker (optional)
 
-### Running Locally
 
-```bash
-# Development mode
-npm run dev
+1. **Database Setup**
+   - Make sure MongoDB is running locally (if not using Docker)
+   - Default connection URL is `mongodb://localhost:27017/droid_db`
+   - You can modify the connection URL in `.env.dev`:
+     ```bash
+     MONGO_URI=mongodb://localhost:27017/droid_db
+     ```
 
-# Production build
-npm run build && npm start
-```
+2. **Start the Application**
+   ```bash
+   # Install dependencies
+   npm install
+
+   # Development mode
+   npm run dev
+
+   # Production build
+   npm run build && npm start
+   ```
 
 ## Testing
 
@@ -44,14 +69,6 @@ npm run build && npm start
 npm test
 ```
 
-## Docker
-
-```bash
-# Start with MongoDB (requires docker-compose.yml)
-docker-compose up --build
-```
-
-**Note:** Environment variables are preconfigured for Docker in `docker-compose.yml` (adjust accordingly).
 
 ## API Documentation
 
