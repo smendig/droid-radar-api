@@ -3,7 +3,7 @@ import { getApp } from './app';
 import { MongoDatabase } from './infrastructure/database/mongo';
 import { MongoAuditRepository } from './infrastructure/repositories/audit.repository';
 import { AuditService } from './application/services/audit.service';
-import { RadarService } from './application/services/targeting.service';
+import { TargetingService } from './application/services/targeting.service';
 import config from './config/config';
 
 async function init() {
@@ -12,7 +12,7 @@ async function init() {
 
   const auditRepository = new MongoAuditRepository(mongoDatabase.getConnection());
   const auditService = new AuditService(auditRepository);
-  const targetingService = new RadarService();
+  const targetingService = new TargetingService();
 
   console.log('Starting server...');
   startServer(getApp(targetingService, auditService));

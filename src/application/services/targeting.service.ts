@@ -7,7 +7,7 @@ const filterByDistance = (scans: ScanPoint[]): ScanPoint[] => {
   return scans.filter(scan => calculateDistance(scan.coordinates.x, scan.coordinates.y) <= 100);
 };
 
-export class RadarService {
+export class TargetingService {
   calculateTarget(requestedProtocols: ProtocolEnum[], scanPoint: ScanPoint[]): { x: number, y: number } | null {
     let candidates = filterByDistance(scanPoint);
     

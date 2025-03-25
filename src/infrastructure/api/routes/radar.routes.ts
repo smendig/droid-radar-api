@@ -1,17 +1,17 @@
 import { Router } from 'express';
 import { type AuditService } from '../../../application/services/audit.service';
-import { type RadarService } from '../../../application/services/targeting.service';
+import { type TargetingService } from '../../../application/services/targeting.service';
 import { scanDataSchema } from '../../../domain/scan-data';
-import { ProtocolEnumArraySchema } from '../../../domain/protocol-types';
+import { protocolsSchema } from '../../../domain/protocol-types';
 import { z } from 'zod';
 
-export const radarRoutes = (radarService: RadarService, auditService: AuditService) => {
+export const radarRoutes = (targetingService: TargetingService, auditService: AuditService) => {
   const router = Router();
 
   router.post('/', async (req, res) => {
     try {
       const requestSchema = z.object({
-        protocols: ProtocolEnumArraySchema,
+        protocols: protocolsSchema,
         scan: scanDataSchema
       });
       const parsedBody = requestSchema.safeParse(req.body);
@@ -21,7 +21,7 @@ export const radarRoutes = (radarService: RadarService, auditService: AuditServi
 
       const { protocols: requestedProtocols, scan } = parsedBody.data;
 
-      const targetCoordinates = await radarService.calculateTarget(requestedProtocols, scan);
+      const targetCoordinates = await targetingService.calculateTarget(requestedProtocols, scan);
 
       await auditService.saveAuditLog(requestedProtocols, scan, targetCoordinates);
 

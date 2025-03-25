@@ -3,7 +3,7 @@ import { MongoAuditRepository } from '../../src/infrastructure/repositories/audi
 import { MongoDatabase } from '../../src/infrastructure/database/mongo';
 
 import { AuditService } from '../../src/application/services/audit.service';
-import { RadarService } from '../../src/application/services/targeting.service';
+import { TargetingService } from '../../src/application/services/targeting.service';
 import { getApp } from '../../src/app';
 import { RequestListener } from 'http';
 
@@ -18,7 +18,7 @@ export async function beforeIntegration() {
     
   const auditRepository = new MongoAuditRepository(mongoDatabase.getConnection());
   const auditService = new AuditService(auditRepository);
-  const targetingService = new RadarService();
+  const targetingService = new TargetingService();
     
   app = getApp(targetingService, auditService);
   return app;

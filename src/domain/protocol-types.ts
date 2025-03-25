@@ -9,5 +9,5 @@ export enum ProtocolEnum {
   AvoidMech = 'avoid-mech',
 }
 
-export const ProtocolEnumArraySchema = z.array(z.nativeEnum(ProtocolEnum));
+export const protocolsSchema = z.array(z.nativeEnum(ProtocolEnum));
 
